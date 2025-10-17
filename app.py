@@ -21,6 +21,8 @@ def index():
 
 @app.route("/order", methods=["POST"])
 def order():
+    print("📦 Raw data:", request.data)
+    print("📦 JSON parsed:", request.get_json(silent=True))
     data = request.get_json()
     print("📦 Received order:", data)
 
