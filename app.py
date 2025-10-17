@@ -21,6 +21,15 @@ def index():
 
 @app.route("/order", methods=["POST"])
 def order():
+    try:
+        print("📦 Raw data:", request.data)
+        print("📦 Headers:", dict(request.headers))
+        json_data = request.get_json(force=True, silent=False)
+        print("📦 JSON parsed:", json_data)
+    except Exception as e:
+        print("❌ JSON parse error:", str(e))
+        return jsonify({"error": str(e)}), 400
+    
     print("📦 Raw data:", request.data)
     print("📦 JSON parsed:", request.get_json(silent=True))
     data = request.get_json()
